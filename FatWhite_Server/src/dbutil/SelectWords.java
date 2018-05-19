@@ -17,7 +17,7 @@ public class SelectWords {
 	
 	public void doSelect(){
 		System.out.println("¶ÁÈ¡Êý¾Ý¡£¡£¡£¡£");
-		String sql = "SELECT * FROM "+tablename+" ORDER BY RAND();";//SQLÓï¾ä
+		String sql = "SELECT * FROM "+tablename+";";//SQLÓï¾ä
 		
 		try {
 			conn = MySqlConn.getConnect();
