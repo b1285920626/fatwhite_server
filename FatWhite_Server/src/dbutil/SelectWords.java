@@ -40,11 +40,16 @@ public class SelectWords {
 				
 				wordList.add(word);
 			}
+			
+			resultSet.close();
+			statement.close();
+			conn.close();
 		}
 		catch(Exception e){
 			e.printStackTrace();
 			System.out.println(e);
 		}
+		
 		System.out.println("∂¡»°ÕÍ≥…°£°£°£");
 	}
 	
