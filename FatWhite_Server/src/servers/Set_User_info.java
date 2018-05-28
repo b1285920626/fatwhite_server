@@ -2,9 +2,6 @@ package servers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dbutil.MySqlConn;
-import utils.Logintool;
+import utils.Set_User_info_tool;
 
 /**
- * Servlet implementation class LoginServer
+ * Servlet implementation class Set_User_info
  */
-@WebServlet("/LoginServer")
-public class LoginServer extends HttpServlet {
+@WebServlet("/Set_User_info")
+public class Set_User_info extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServer() {
+    public Set_User_info() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,7 +31,7 @@ public class LoginServer extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -43,18 +39,15 @@ public class LoginServer extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		
-		//设置客户端的解码方式为utf-8  
-        response.setContentType("text/html;charset=utf-8");   
-        response.setCharacterEncoding("UTF-8");  
-          
-        PrintWriter out = response.getWriter();  
+		response.setContentType("text/html;charset=utf-8");   
+        response.setCharacterEncoding("UTF-8");
         
-        String user_openid = request.getParameter("openid");
-        Logintool logintool =new Logintool(user_openid);
-        String result = logintool.makeresponse();
+        Set_User_info_tool setUserinfotool = new Set_User_info_tool(request);
+		String result = setUserinfotool.set_data();
+        System.out.println(request.toString());
         
+//        String result = "success";
+        PrintWriter out = response.getWriter(); 
         out.write(result);  
         out.flush();  
         out.close();  

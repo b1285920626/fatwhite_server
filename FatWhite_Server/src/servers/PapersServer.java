@@ -36,10 +36,11 @@ public class PapersServer extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8"); // 设置响应报文的编码格式
 		String paper = request.getParameter("paper");
+		String type = request.getParameter("type");
 		if(paper.equals("15242005956")) {
 			StringBuilder paper_names = new StringBuilder();
 			try {
-				String sql = "SELECT name FROM papers;";
+				String sql = "SELECT name FROM papers WHERE type = '"+type+"';";
 				Connection conn = MySqlConn.getConnect();
 				Statement statement = conn.createStatement();
 				ResultSet resultSet = statement.executeQuery(sql);
@@ -61,7 +62,7 @@ public class PapersServer extends HttpServlet {
 		}else {
 			MakePaper makePaper = new MakePaper(paper);
 			
-			response.getWriter().append(makePaper.doit());
+			response.getWriter().append(makePaper.doit(type));
 			System.out.println("处理请求2");
 		}
 	}

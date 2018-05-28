@@ -11,7 +11,7 @@ public class MakePaper {
 		this.papername = str;
 	}
 	
-	public String doit() {
+	public String doit(String type) {
 		StringBuilder paper = new StringBuilder();
 		StringBuilder answer = new StringBuilder();
 		
@@ -20,107 +20,63 @@ public class MakePaper {
 			Statement statement = conn.createStatement();
 			
 			if(papername.equals("roll")) {
-				String sql = "SELECT * FROM questions_wanxing ORDER BY RAND() LIMIT 1;";
+				String sql = "SELECT * FROM questions_"+type+" WHERE type = 1 ORDER BY RAND() LIMIT 1;";
 				ResultSet resultSet = statement.executeQuery(sql);
 				
 				resultSet.next();
-				paper.append(resultSet.getString(3)).append("#").append(resultSet.getString(4)).append("#");
-				answer.append(resultSet.getString(5)+ "|")
-					  .append(resultSet.getString(6)+ "|")
-					  .append(resultSet.getString(7)+ "|")
-					  .append(resultSet.getString(8)+ "|")
-					  .append(resultSet.getString(9)+ "|")
-					  .append(resultSet.getString(10)+ "|")
-					  .append(resultSet.getString(11)+ "|")
-					  .append(resultSet.getString(12)+ "|")
-					  .append(resultSet.getString(13)+ "|")
-					  .append(resultSet.getString(14)+ "|");
+				paper.append(resultSet.getString(3)).append("#");
+				answer.append(resultSet.getString(4)+ "#");
 				
-				sql = "SELECT * FROM questions_quickread ORDER BY RAND() LIMIT 1;";
+				sql = "SELECT * FROM questions_"+type+" WHERE type = 2 ORDER BY RAND() LIMIT 1;";
 				resultSet = statement.executeQuery(sql);
 				
 				resultSet.next();
-				paper.append(resultSet.getString(3)).append("#").append(resultSet.getString(4)).append("#");
-				answer.append(resultSet.getString(5)+ "|")
-					  .append(resultSet.getString(6)+ "|")
-					  .append(resultSet.getString(7)+ "|")
-					  .append(resultSet.getString(8)+ "|")
-					  .append(resultSet.getString(9)+ "|")
-					  .append(resultSet.getString(10)+ "|")
-					  .append(resultSet.getString(11)+ "|")
-					  .append(resultSet.getString(12)+ "|")
-					  .append(resultSet.getString(13)+ "|")
-					  .append(resultSet.getString(14)+ "|");
+				paper.append(resultSet.getString(3)).append("#");
+				answer.append(resultSet.getString(4)+ "#");
 				
-				sql = "SELECT * FROM questions_carefulread ORDER BY RAND() LIMIT 1,2;";
+				sql = "SELECT * FROM questions_"+type+" WHERE type = 3 ORDER BY RAND() LIMIT 1;";
 				resultSet = statement.executeQuery(sql);
+				
 				resultSet.next();
-				paper.append(resultSet.getString(3)).append("#").append(resultSet.getString(4)).append("#");
-				answer.append(resultSet.getString(5)+ "|")
-					  .append(resultSet.getString(6)+ "|")
-					  .append(resultSet.getString(7)+ "|")
-					  .append(resultSet.getString(8)+ "|")
-					  .append(resultSet.getString(9)+ "|");
+				paper.append(resultSet.getString(3)).append("#");
+				answer.append(resultSet.getString(4)+ "#");
+				
+				sql = "SELECT * FROM questions_"+type+" WHERE type = 4 ORDER BY RAND() LIMIT 1;";
+				resultSet = statement.executeQuery(sql);
+				
 				resultSet.next();
-				paper.append(resultSet.getString(3)).append("#").append(resultSet.getString(4)).append("#");
-				answer.append(resultSet.getString(5)+ "|")
-					  .append(resultSet.getString(6)+ "|")
-					  .append(resultSet.getString(7)+ "|")
-					  .append(resultSet.getString(8)+ "|")
-					  .append(resultSet.getString(9));
+				paper.append(resultSet.getString(3)).append("#");
+				answer.append(resultSet.getString(4));
 			}else {
-				String sql = "SELECT "+papername+" FROM papers LIMIT 1;";
+				String sql = "SELECT * FROM papers WHERE name = '"+papername+"';";
 				ResultSet resultSet = statement.executeQuery(sql);
 				
 				resultSet.next();
-				String[] ids = {resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6)};
+				String[] ids = {resultSet.getString(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7)};
 				
-				sql = "SELECT * FROM questions_wanxing WHERE id = '"+ids[0]+"';";
+				sql = "SELECT * FROM questions_"+type+" WHERE id = '"+ids[0]+"';";
 				resultSet = statement.executeQuery(sql);
 				resultSet.next();
-				paper.append(resultSet.getString(3)).append("#").append(resultSet.getString(4)).append("#");
-				answer.append(resultSet.getString(5)+ "|")
-					  .append(resultSet.getString(6)+ "|")
-					  .append(resultSet.getString(7)+ "|")
-					  .append(resultSet.getString(8)+ "|")
-					  .append(resultSet.getString(9)+ "|")
-					  .append(resultSet.getString(10)+ "|")
-					  .append(resultSet.getString(11)+ "|")
-					  .append(resultSet.getString(12)+ "|")
-					  .append(resultSet.getString(13)+ "|")
-					  .append(resultSet.getString(14)+ "|");
-				sql = "SELECT * FROM questions_quickread WHERE id = '"+ids[1]+"';";
+				paper.append(resultSet.getString(3)).append("#");
+				answer.append(resultSet.getString(4)+ "#");
+				
+				sql = "SELECT * FROM questions_"+type+" WHERE id = '"+ids[1]+"';";
 				resultSet = statement.executeQuery(sql);
 				resultSet.next();
-				paper.append(resultSet.getString(3)).append("#").append(resultSet.getString(4)).append("#");
-				answer.append(resultSet.getString(5)+ "|")
-					  .append(resultSet.getString(6)+ "|")
-					  .append(resultSet.getString(7)+ "|")
-					  .append(resultSet.getString(8)+ "|")
-					  .append(resultSet.getString(9)+ "|")
-					  .append(resultSet.getString(10)+ "|")
-					  .append(resultSet.getString(11)+ "|")
-					  .append(resultSet.getString(12)+ "|")
-					  .append(resultSet.getString(13)+ "|")
-					  .append(resultSet.getString(14)+ "|");
-				sql = "SELECT * FROM questions_carefulread WHERE id = '"+ids[2]+"';";
+				paper.append(resultSet.getString(3)).append("#");
+				answer.append(resultSet.getString(4)+ "#");
+				
+				sql = "SELECT * FROM questions_"+type+" WHERE id = '"+ids[2]+"';";
 				resultSet = statement.executeQuery(sql);
 				resultSet.next();
-				paper.append(resultSet.getString(3)).append("#").append(resultSet.getString(4)).append("#");
-				answer.append(resultSet.getString(5)+ "|")
-					  .append(resultSet.getString(6)+ "|")
-					  .append(resultSet.getString(7)+ "|")
-					  .append(resultSet.getString(8)+ "|")
-					  .append(resultSet.getString(9)+ "|");
-				sql = "SELECT * FROM questions_carefulread WHERE id = '"+ids[3]+"';";
+				paper.append(resultSet.getString(3)).append("#");
+				answer.append(resultSet.getString(4)+ "#");
+				
+				sql = "SELECT * FROM questions_"+type+" WHERE id = '"+ids[3]+"';";
 				resultSet = statement.executeQuery(sql);
 				resultSet.next();
-				paper.append(resultSet.getString(3)).append("#").append(resultSet.getString(4)).append("#");
-				answer.append(resultSet.getString(5)+ "|")
-					  .append(resultSet.getString(6)+ "|")
-					  .append(resultSet.getString(7)+ "|")
-					  .append(resultSet.getString(8)+ "|")
-					  .append(resultSet.getString(9)+ "|");
+				paper.append(resultSet.getString(3)).append("#");
+				answer.append(resultSet.getString(4));
 				
 				resultSet.close();
 			}
