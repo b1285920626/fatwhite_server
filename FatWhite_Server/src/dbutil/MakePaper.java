@@ -24,33 +24,6 @@ public class MakePaper {
 			Statement statement = conn.createStatement();
 			
 			if(papername.equals("roll")) {
-//				String sql = "SELECT * FROM questions_"+type+" WHERE type = 1 ORDER BY RAND() LIMIT 1;";
-//				ResultSet resultSet = statement.executeQuery(sql);
-//				
-//				resultSet.next();
-//				paper.append(resultSet.getString(3)).append("#");
-//				answer.append(resultSet.getString(4)+ "#");
-//				
-//				sql = "SELECT * FROM questions_"+type+" WHERE type = 2 ORDER BY RAND() LIMIT 1;";
-//				resultSet = statement.executeQuery(sql);
-//				
-//				resultSet.next();
-//				paper.append(resultSet.getString(3)).append("#");
-//				answer.append(resultSet.getString(4)+ "#");
-//				
-//				sql = "SELECT * FROM questions_"+type+" WHERE type = 3 ORDER BY RAND() LIMIT 1;";
-//				resultSet = statement.executeQuery(sql);
-//				
-//				resultSet.next();
-//				paper.append(resultSet.getString(3)).append("#");
-//				answer.append(resultSet.getString(4)+ "#");
-//				
-//				sql = "SELECT * FROM questions_"+type+" WHERE type = 4 ORDER BY RAND() LIMIT 1;";
-//				resultSet = statement.executeQuery(sql);
-//				
-//				resultSet.next();
-//				paper.append(resultSet.getString(3)).append("#");
-//				answer.append(resultSet.getString(4));
 
 				Paper newpaper = new Paper();
 				Question temp_question = new Question();

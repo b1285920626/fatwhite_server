@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import utils.Set_User_info_tool;
+import dbutil.SaveUserWord;
 
 /**
- * Servlet implementation class Set_User_info
+ * Servlet implementation class Save_wordlist
  */
-@WebServlet("/Set_User_info")
-public class Set_User_info extends HttpServlet {
+@WebServlet("/Save_wordlist")
+public class Save_wordlist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Set_User_info() {
+    public Save_wordlist() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,11 +41,10 @@ public class Set_User_info extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");   
         response.setCharacterEncoding("UTF-8");
+
+        String result = SaveUserWord.doit(request);
         
-        Set_User_info_tool setUserinfotool = new Set_User_info_tool(request);
-		String result = setUserinfotool.set_data();
         System.out.println(request.toString());
-        
         PrintWriter out = response.getWriter(); 
         out.write(result);  
         out.flush();  

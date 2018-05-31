@@ -2,8 +2,6 @@ package utils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
-
 import javax.servlet.http.HttpServletRequest;
 
 import dbutil.MySqlConn;
