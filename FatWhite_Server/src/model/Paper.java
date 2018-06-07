@@ -24,7 +24,7 @@ public class Paper {
 	
 	public void setdatetime() {
 		Date now = new Date(); 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 
 		datetime = dateFormat.format( now ); 
 		System.out.println(datetime); 
